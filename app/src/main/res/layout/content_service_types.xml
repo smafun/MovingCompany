@@ -8,4 +8,10 @@
     tools:context="com.example.tuananhle.movingcompany.ServiceTypesActivity"
     tools:showIn="@layout/activity_service_types">
 
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="344dp"
+        android:layout_height="495dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp" />
 </android.support.constraint.ConstraintLayout>
