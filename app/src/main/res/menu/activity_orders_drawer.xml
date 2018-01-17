@@ -13,8 +13,8 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="Customers" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:id="@+id/nav_servicetypes"
+            android:icon="@drawable/ic_menu_servicetypes"
             android:title="Service Types" />
         <item
             android:id="@+id/nav_manage"
