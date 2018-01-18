@@ -84,8 +84,9 @@ public class OrdersActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-            Log.d("MC", "list customers");
+        } else if (id == R.id.nav_customer) {
+            Intent intent = new Intent(this, CustomerActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_servicetypes) {
             Intent intent = new Intent(this, ServiceTypesActivity.class);
             startActivity(intent);

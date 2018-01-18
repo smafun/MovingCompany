@@ -35,6 +35,23 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.tuananhle.movingcompany.ServiceTypesActivity" />
         </activity>
+        <activity
+            android:name=".CustomerActivity"
+            android:parentActivityName=".OrdersActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.tuananhle.movingcompany.OrdersActivity" />
+        </activity>
+
+        <activity
+            android:name=".NewCustomerActivity"
+            android:parentActivityName=".CustomerActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.tuananhle.movingcompany.CustomerActivity" />
+        </activity>
 
     </application>
 
