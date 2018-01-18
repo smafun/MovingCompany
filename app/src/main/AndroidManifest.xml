@@ -53,6 +53,15 @@
                 android:value="com.example.tuananhle.movingcompany.CustomerActivity" />
         </activity>
 
+
+        <activity
+            android:name=".NewOrderActivity"
+            android:parentActivityName=".OrdersActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.tuananhle.movingcompany.OrdersActivity" />
+        </activity>
     </application>
 
 </manifest>

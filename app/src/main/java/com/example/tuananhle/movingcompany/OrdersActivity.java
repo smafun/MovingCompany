@@ -29,8 +29,8 @@ public class OrdersActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(view.getContext(), NewOrderActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -90,12 +90,6 @@ public class OrdersActivity extends AppCompatActivity
         } else if (id == R.id.nav_servicetypes) {
             Intent intent = new Intent(this, ServiceTypesActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

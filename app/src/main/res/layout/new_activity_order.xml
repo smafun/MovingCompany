@@ -20,6 +20,7 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,25 +30,33 @@
             android:id="@+id/editText1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Name" />
+            android:hint="Address from" />
 
         <EditText
             android:id="@+id/editText2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Name" />
+            android:hint="Address to" />
 
         <EditText
             android:id="@+id/editText3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Phone number" />
+            android:hint="Date" />
 
         <EditText
             android:id="@+id/editText4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email" />
+            android:hint="Service type" />
+
+        <EditText
+            android:id="@+id/editText5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Service type"
+            android:inputType="textMultiLine"
+            android:lines="5"/>
      <!--   <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -63,6 +72,7 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>-->
     </LinearLayout>
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
