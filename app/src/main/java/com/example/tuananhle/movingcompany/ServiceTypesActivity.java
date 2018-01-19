@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -24,6 +25,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.apache.http.NameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,10 +34,29 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.zip.GZIPInputStream;
 
-//import org.springframework.web.client.RestTemplate;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+
+import org.apache.http.*;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
+
 
 public class ServiceTypesActivity extends AppCompatActivity {
 
@@ -59,18 +80,11 @@ public class ServiceTypesActivity extends AppCompatActivity {
         // Instantiate the RequestQueue.
 
     // Start testing
-     /*   try {
-            final String url = "http://rest-service.guides.spring.io/greeting";
-            RestTemplate restTemplate = new RestTemplate();
-            restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-            ServiceTypeClass greeting = restTemplate.getForObject(url, ServiceTypeClass.class);
-            //return greeting;
-        } catch (Exception e) {
-            Log.e("MainActivity", e.getMessage(), e);
-        }
-*/
-    /*    RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://localhost:5000/api/orderplacement";
+
+        List<ServiceTypeClass> OrderInfo = new ArrayList<ServiceTypeClass>();
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "http://rest-service.guides.spring.io/greeting";
         StringRequest getRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>()
                 {
@@ -78,6 +92,11 @@ public class ServiceTypesActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         // response
                         Log.d("Response", response);
+                        JsonParser parser = new JsonParser();
+                        JsonElement mJson =  parser.parse(response);
+                        Gson gson = new Gson();
+                        ServiceTypeClass object = gson.fromJson(mJson, ServiceTypeClass.class);
+                        //OrderInfo.add(object);
                     }
                 },
                 new Response.ErrorListener()
@@ -89,9 +108,12 @@ public class ServiceTypesActivity extends AppCompatActivity {
                     }
                 }
         ) ;
+
         queue.add(getRequest);
-*/
+
+
         // End testing
+
         String[] myStringArray = new String[]{"Tuan", "Uwe"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, myStringArray);
@@ -101,4 +123,24 @@ public class ServiceTypesActivity extends AppCompatActivity {
 
 
 
+    private String convertStreamToString(InputStream inputStream) {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+        StringBuilder stringBuilder = new StringBuilder();
+        String line = null;
+        try {
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } finally {
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            }
+        }
+
+        return stringBuilder.toString();
+    }
 }

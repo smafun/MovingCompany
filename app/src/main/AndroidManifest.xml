@@ -62,6 +62,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.tuananhle.movingcompany.OrdersActivity" />
         </activity>
+
+        <activity
+            android:name=".EditCustomerActivity"
+            android:parentActivityName=".CustomerActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.tuananhle.movingcompany.CustomerActivity" />
+        </activity>
     </application>
 
 </manifest>

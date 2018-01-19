@@ -26,42 +26,22 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/customerName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Name" />
 
         <EditText
-            android:id="@+id/editText2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Name" />
-
-        <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/customerPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Phone number" />
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/customerEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email" />
-     <!--   <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/button_submit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <Button
-                android:id="@+id/buttonSrc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>-->
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
