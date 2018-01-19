@@ -22,7 +22,6 @@ public class ServiceTypeClass {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -30,7 +29,6 @@ public class ServiceTypeClass {
     public String getContent() {
         return content;
     }
-
     public void setContent(String content) {
         this.content = content;
     }
@@ -39,4 +37,5 @@ public class ServiceTypeClass {
         this.id = id;
         this.content = content;
     }
+
 }

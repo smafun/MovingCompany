@@ -39,6 +39,8 @@ public class CustomerActivity extends AppCompatActivity {
             });
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+            // Get all customer from http://localhost/api/customer
+
             String[] myStringArray = new String[]{"Uwe", "Uwe"};
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, myStringArray);

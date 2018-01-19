@@ -2,6 +2,8 @@ package com.example.tuananhle.movingcompany;
 //import org.springframework.web.client.RestTemplate;
 
 import android.content.Intent;
+import android.database.DatabaseErrorHandler;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.http.HttpResponseCache;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -26,6 +28,11 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.conn.ConnectTimeoutException;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -54,6 +61,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.springframework.http.client.OkHttpClientHttpRequestFactory;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
@@ -81,10 +89,10 @@ public class ServiceTypesActivity extends AppCompatActivity {
 
     // Start testing
 
-        List<ServiceTypeClass> OrderInfo = new ArrayList<ServiceTypeClass>();
-
+        ArrayList<ServiceTypeClass> Info = new ArrayList<>();
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://rest-service.guides.spring.io/greeting";
+        //String url = "http://rest-service.guides.spring.io/greeting";
+        String url = "http://localhost:5000/api/values";
         StringRequest getRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>()
                 {
@@ -96,8 +104,9 @@ public class ServiceTypesActivity extends AppCompatActivity {
                         JsonElement mJson =  parser.parse(response);
                         Gson gson = new Gson();
                         ServiceTypeClass object = gson.fromJson(mJson, ServiceTypeClass.class);
-                        //OrderInfo.add(object);
+                        Info.add(object);
                     }
+
                 },
                 new Response.ErrorListener()
                 {
@@ -107,9 +116,14 @@ public class ServiceTypesActivity extends AppCompatActivity {
                         Log.d("MC", "list customers");
                     }
                 }
+
+
+
         ) ;
 
         queue.add(getRequest);
+
+
 
 
         // End testing

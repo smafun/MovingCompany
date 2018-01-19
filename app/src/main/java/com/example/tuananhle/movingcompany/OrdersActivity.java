@@ -36,6 +36,8 @@ public class OrdersActivity extends AppCompatActivity
                 }
             });
 
+            // Get all order from http://localhost/api/order
+
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                     this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
