@@ -22,12 +22,14 @@
 
     </android.support.design.widget.AppBarLayout>
      <EditText
-        android:id="@+id/serviceType"
+        android:id="@+id/name"
         android:ems="8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:hint="Ny service type"
+        android:hint="New service name"
+         android:inputType="text"
+        android:maxLines="1"
          />
 
     <android.support.design.widget.FloatingActionButton

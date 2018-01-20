@@ -36,6 +36,7 @@ import com.google.gson.reflect.TypeToken;
 
 
 public class ServiceTypesActivity extends AppCompatActivity {
+    private ArrayAdapter<ServiceType> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,25 +57,29 @@ public class ServiceTypesActivity extends AppCompatActivity {
 
         // Instantiate the RequestQueue.
 
-    // Start testing
-
         List<ServiceType> myStringArray = new ArrayList<ServiceType>();
-        ArrayAdapter<ServiceType> adapter = new ArrayAdapter<ServiceType>(this,
+        adapter = new ArrayAdapter<ServiceType>(this,
                 android.R.layout.simple_list_item_1, myStringArray);
         ListView listView = (ListView) findViewById(R.id.listview);
         listView.setAdapter(adapter);
         // Click on item
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long itemId) {
                 Intent intent = new Intent(view.getContext(), ServiceTypeActivity.class);
-                id = myStringArray.get(position).getId();
+                int id = myStringArray.get(position).getId();
                 intent.putExtra("Id", id);
                 startActivity(intent);
             }
         });
+    }
 
+    public void onResume() {
+        super.onResume();
+        loadItems(adapter);
+    }
 
+    private void loadItems(ArrayAdapter<ServiceType> adapter) {
         RequestQueue queue = Volley.newRequestQueue(this);
         Activity activity = this;
         StringRequest getRequest = new StringRequest(Request.Method.GET, ConstantsUrl.SERVICETYPES,
@@ -102,15 +107,8 @@ public class ServiceTypesActivity extends AppCompatActivity {
                     }
                 }
         ) ;
-
         queue.add(getRequest);
-
-        // End testing
-
-        // start testing
-
     }
-
 
 
     private String convertStreamToString(InputStream inputStream) {
