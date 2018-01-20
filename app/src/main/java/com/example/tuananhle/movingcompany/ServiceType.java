@@ -13,14 +13,6 @@ public class ServiceType {
         this.name = name;
     }
 
-
-/*    public void setServiceTypeId(String serviceTypeId) {
-        this.ServiceTypeId = serviceTypeId;
-    }
-    public String getServiceTypeId() {
-        return this.ServiceTypeId;
-    }*/
-
     public void setName(String name) {
         this.name = name;
     }

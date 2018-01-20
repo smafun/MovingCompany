@@ -34,7 +34,7 @@ public class ServiceTypesActivity extends AppCompatActivity {
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // Instantiate the RequestQueue.
+        // Get all servicetypes from http://localhost/api/servicetypes
 
         List<ServiceType> myStringArray = new ArrayList<ServiceType>();
         adapter = new ArrayAdapter<ServiceType>(this,

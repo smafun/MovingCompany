@@ -140,15 +140,6 @@ public class ServiceTypeActivity extends AppCompatActivity {
             requestQueue.add(postRequest);
             return null;
         }
-
-    /*    @Override
-        protected void onPostExecute(ServiceType greeting) {
-            TextView greetingIdText = (TextView) findViewById(R.id.id_value);
-            TextView greetingContentText = (TextView) findViewById(R.id.content_value);
-            greetingIdText.setText(greeting.getId());
-            greetingContentText.setText(greeting.getContent());
-        }*/
-
     }
 
 }

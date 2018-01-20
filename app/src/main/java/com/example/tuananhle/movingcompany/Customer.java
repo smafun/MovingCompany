@@ -4,20 +4,19 @@ package com.example.tuananhle.movingcompany;
  * Created by tuananhle on 19.01.2018.
  */
 
-public class CustomerClass {
-    private int CustomerId;
+public class Customer {
+    private int Id;
     private String CustomerName;
     private String CustomerPhone;
     private String CustomerEmail;
     private int OrderId;
 
 
-    public int getCustomerId() {
-        return CustomerId;
+    public int getId() {
+        return Id;
     }
-
-    public void setCustomerId(int customerId) {
-        this.CustomerId = customerId;
+    public void setId(int customerId) {
+        this.Id = customerId;
     }
 
     public String getCustomerName() {
@@ -54,8 +53,8 @@ public class CustomerClass {
 
 
 
-    public CustomerClass(int customerid, String customername, String customerphone, String customeremail, int orderid){
-        this.CustomerId = customerid;
+    public Customer(int id, String customername, String customerphone, String customeremail, int orderid){
+        this.Id = id;
         this.CustomerName = customername;
         this.CustomerPhone = customerphone;
         this.CustomerEmail = customeremail;

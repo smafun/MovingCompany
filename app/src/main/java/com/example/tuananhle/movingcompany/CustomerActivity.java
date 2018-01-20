@@ -13,18 +13,19 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by tuananhle on 18.01.2018.
  */
 
 public class CustomerActivity extends AppCompatActivity {
-
+    private ArrayAdapter<Customer> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         try{
-
             setContentView(R.layout.activity_customer);
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
@@ -40,41 +41,37 @@ public class CustomerActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
             // Get all customer from http://localhost/api/customer
-
-            String[] myStringArray = new String[]{"Uwe", "Uwe"};
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+            List<Customer> myStringArray = new ArrayList<>();
+            adapter = new ArrayAdapter<Customer>(this,
                 android.R.layout.simple_list_item_1, myStringArray);
             ListView listView = (ListView) findViewById(R.id.listview);
             listView.setAdapter(adapter);
+            // Click on item
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                    Log.d("MC", "list customers");
-                    Intent intent = new Intent(view.getContext(), EditCustomerActivity.class);
-                    intent.putExtra("id", i);
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long itemId) {
+                    Intent intent = new Intent(view.getContext(), CustomActivity.class);
+                    int id = myStringArray.get(position).getId();
+                    intent.putExtra("Id", id);
                     startActivity(intent);
                 }
             });
+
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
 
+    public void onResume() {
+        super.onResume();
+        //ServiceTypeService.getAll(this);
+    }
+
+    public void onItemsLoaded(List<Customer> customer) {
+        adapter.clear();
+        //adapter.addAll(serviceTypes);
     }
 }
 
-/*
 
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-
- */
 

@@ -4,7 +4,7 @@ package com.example.tuananhle.movingcompany;
  * Created by tuananhle on 19.01.2018.
  */
 
-public class OrderClass {
+public class Order {
     private int CustomerId;
     private int ServiceId;
     private int OrderId;
@@ -20,13 +20,6 @@ public class OrderClass {
     }
     public void setCustomerId(int customerId) {
         this.CustomerId = customerId;
-    }
-
-    public int getServiceId() {
-        return ServiceId;
-    }
-    public void setServiceId(int serviceId) {
-        this.ServiceId = serviceId;
     }
 
     public int getOrderId() {
@@ -72,9 +65,8 @@ public class OrderClass {
     }
 
 
-    public OrderClass(int customerid, int serviceid, int orderid, String addrfrom, String addrto, String email, String date, String freetxt){
+    public Order(int customerid, int orderid, String addrfrom, String addrto, String email, String date, String freetxt){
         this.CustomerId = customerid;
-        this.ServiceId = serviceid;
         this.OrderId = orderid;
         this.AddressFrom = addrfrom;
         this.AddressTo = addrto;
