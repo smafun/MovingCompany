@@ -1,12 +1,10 @@
 package com.example.tuananhle.movingcompany;
 
-import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -17,25 +15,12 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-/**
- * Created by tuananhle on 18.01.2018.
- */
 
 public class ServiceTypeActivity extends AppCompatActivity {
     private int id;
@@ -77,7 +62,7 @@ public class ServiceTypeActivity extends AppCompatActivity {
         }
     }
 
-    public void setServiceType(ServiceType serviceType) {
+    public void onServiceTypeLoaded(ServiceType serviceType) {
         ((EditText) findViewById(R.id.name)).setText(serviceType.getName());
         ((EditText) findViewById(R.id.name)).setEnabled(true);
     }
