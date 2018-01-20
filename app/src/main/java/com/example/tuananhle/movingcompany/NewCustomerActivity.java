@@ -17,29 +17,40 @@ public class NewCustomerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.new_activity_customer);
         try{
-            setContentView(R.layout.new_activity_customer);
+
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
 
-            FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-            fab.setOnClickListener(new View.OnClickListener() {
+            FloatingActionButton delete = (FloatingActionButton) findViewById(R.id.delete);
+            delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    // Delete item
                 }
             });
+
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }catch (Exception e){
             e.printStackTrace();
         }
 
+        try{
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
 
-
-
-
+            FloatingActionButton update = (FloatingActionButton) findViewById(R.id.update);
+            update.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Update item
+                }
+            });
+           getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }catch (Exception e){
+                e.printStackTrace();
+        }
     }
 }
 

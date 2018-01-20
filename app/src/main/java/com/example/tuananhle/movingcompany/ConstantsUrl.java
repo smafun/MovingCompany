@@ -7,7 +7,7 @@ import com.android.volley.toolbox.StringRequest;
  */
 
 public class ConstantsUrl {
-    public static final String REST_SERVICE_URL = "http://localhost:5000/api/";
+    public static final String REST_SERVICE_URL = "http://10.0.2.2:5000/api/";
     public static final String ORDERPLACEMENT =  REST_SERVICE_URL + "orderplacement";
     public static final String ORDER = REST_SERVICE_URL + "order";
     public static final String CUSTOMER = REST_SERVICE_URL + "customer";

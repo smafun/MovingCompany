@@ -30,7 +30,7 @@
             android:value="com.example.tuananhle.movingcompany.OrdersActivity" />
         </activity>
         <activity
-            android:name=".NewServiceTypesActivity"
+            android:name=".ServiceTypeActivity"
             android:parentActivityName=".ServiceTypesActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
