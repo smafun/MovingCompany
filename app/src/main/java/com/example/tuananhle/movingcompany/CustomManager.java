@@ -1,18 +1,11 @@
 package com.example.tuananhle.movingcompany;
 
-import android.app.Activity;
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
@@ -20,18 +13,18 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
-import org.json.JSONObject;
-
 import java.lang.reflect.Type;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-class ServiceTypeService {
-    public static void getServiceType(ServiceTypeActivity activity, int id) {
+/**
+ * Created by tuananhle on 20.01.2018.
+ */
+
+public class CustomManager {
+    public static void getCustom(CustomActivity activity, int id) {
         RequestQueue requestQueue = Volley.newRequestQueue(activity);
         RequestQueue queue = Volley.newRequestQueue(activity);
-        StringRequest getRequest = new StringRequest(Request.Method.GET, ConstantsUrl.SERVICETYPES + "/"+ id,
+        StringRequest getRequest = new StringRequest(Request.Method.GET, ConstantsUrl.CUSTOMER + "/"+ id,
                 new Response.Listener<String>()
                 {
                     @Override
@@ -41,8 +34,8 @@ class ServiceTypeService {
                         JsonParser parser = new JsonParser();
                         JsonElement mJson =  parser.parse(response);
                         Gson gson = new Gson();
-                        ServiceType serviceType = gson.fromJson(mJson, ServiceType.class);
-                        activity.onServiceTypeLoaded(serviceType);
+                        Custom custom = gson.fromJson(mJson, Custom.class);
+                        activity.onServiceTypeLoaded(custom);
                     }
                 },
                 new Response.ErrorListener()
@@ -58,9 +51,9 @@ class ServiceTypeService {
         queue.add(getRequest);
     }
 
-    public static void getAll(ServiceTypesActivity activity) {
+    public static void getAll(CustomerActivity activity) {
         RequestQueue queue = Volley.newRequestQueue(activity);
-        StringRequest getRequest = new StringRequest(Request.Method.GET, ConstantsUrl.SERVICETYPES,
+        StringRequest getRequest = new StringRequest(Request.Method.GET, ConstantsUrl.CUSTOMER,
                 new Response.Listener<String>()
                 {
                     @Override
@@ -70,9 +63,9 @@ class ServiceTypeService {
                         JsonParser parser = new JsonParser();
                         JsonElement mJson =  parser.parse(response);
                         Gson gson = new Gson();
-                        Type listType = new TypeToken<List<ServiceType>>(){}.getType();
-                        List<ServiceType> serviceTypes = (List<ServiceType>)gson.fromJson(mJson, listType);
-                        activity.onItemsLoaded(serviceTypes);
+                        Type listType = new TypeToken<List<Custom>>(){}.getType();
+                        List<Custom> customer = (List<Custom>)gson.fromJson(mJson, listType);
+                        activity.onItemsLoaded(customer);
                     }
                 },
                 new Response.ErrorListener()

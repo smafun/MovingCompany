@@ -3,11 +3,8 @@ package com.example.tuananhle.movingcompany;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,7 +18,7 @@ import java.util.List;
  */
 
 public class CustomerActivity extends AppCompatActivity {
-    private ArrayAdapter<Customer> adapter;
+    private ArrayAdapter<Custom> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,15 +31,15 @@ public class CustomerActivity extends AppCompatActivity {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(view.getContext(), NewCustomerActivity.class);
+                    Intent intent = new Intent(view.getContext(), CustomActivity.class);
                     startActivity(intent);
                 }
             });
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
             // Get all customer from http://localhost/api/customer
-            List<Customer> myStringArray = new ArrayList<>();
-            adapter = new ArrayAdapter<Customer>(this,
+            List<Custom> myStringArray = new ArrayList<>();
+            adapter = new ArrayAdapter<Custom>(this,
                 android.R.layout.simple_list_item_1, myStringArray);
             ListView listView = (ListView) findViewById(R.id.listview);
             listView.setAdapter(adapter);
@@ -64,12 +61,12 @@ public class CustomerActivity extends AppCompatActivity {
 
     public void onResume() {
         super.onResume();
-        //ServiceTypeService.getAll(this);
+        CustomManager.getAll(this);
     }
 
-    public void onItemsLoaded(List<Customer> customer) {
+    public void onItemsLoaded(List<Custom> customer) {
         adapter.clear();
-        //adapter.addAll(serviceTypes);
+        adapter.addAll(customer);
     }
 }
 

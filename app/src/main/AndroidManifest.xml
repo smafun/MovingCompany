@@ -47,7 +47,7 @@
         </activity>
 
         <activity
-            android:name=".NewCustomerActivity"
+            android:name=".CustomActivity"
             android:parentActivityName=".CustomerActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

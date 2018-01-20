@@ -29,15 +29,12 @@ public class ServiceTypeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.id = getIntent().getIntExtra("Id", -1);
-
         try{
             setContentView(R.layout.activity_service_type);
-
             if (id > 0) {
                 ((EditText) findViewById(R.id.name)).setEnabled(false);
                 ServiceTypeService.getServiceType(this, id);
             }
-
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
 
@@ -52,11 +49,9 @@ public class ServiceTypeActivity extends AppCompatActivity {
                     else {
                         new HttpUpdateTask().execute();
                     }
-
                 }
             });
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         }catch (Exception e){
             e.printStackTrace();
         }

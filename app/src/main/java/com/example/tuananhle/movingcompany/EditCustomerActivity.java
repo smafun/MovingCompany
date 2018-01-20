@@ -19,7 +19,7 @@ public class EditCustomerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         try{
-            setContentView(R.layout.new_activity_customer);
+            setContentView(R.layout.activity_custom);
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
 
@@ -40,9 +40,9 @@ public class EditCustomerActivity extends AppCompatActivity {
             String phone = "12345678";
             String email = "norway@norway.no";
 
-            final EditText Name = (EditText) findViewById(R.id.customerName);
-            final EditText Phone = (EditText) findViewById(R.id.customerPhone);
-            final EditText Email = (EditText) findViewById(R.id.customerEmail);
+            final EditText Name = (EditText) findViewById(R.id.customName);
+            final EditText Phone = (EditText) findViewById(R.id.customPhone);
+            final EditText Email = (EditText) findViewById(R.id.customEmail);
 
             Name.setText(name);
             Phone.setText(phone);
