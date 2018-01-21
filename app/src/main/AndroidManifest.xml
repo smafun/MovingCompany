@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".OrdersActivity"
+            android:name=".OrderListActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -21,29 +21,29 @@
             </intent-filter>
         </activity>
         <activity
-        android:name=".ServiceTypesActivity"
+        android:name=".ServiceTypeListActivity"
         android:label="@string/title_activity_service_types"
-        android:parentActivityName=".OrdersActivity"
+        android:parentActivityName=".OrderListActivity"
         android:theme="@style/AppTheme.NoActionBar">
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.example.tuananhle.movingcompany.OrdersActivity" />
+            android:value="com.example.tuananhle.movingcompany.OrderListActivity" />
         </activity>
         <activity
             android:name=".ServiceTypeActivity"
-            android:parentActivityName=".ServiceTypesActivity"
+            android:parentActivityName=".ServiceTypeListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.tuananhle.movingcompany.ServiceTypesActivity" />
+                android:value="com.example.tuananhle.movingcompany.ServiceTypeListActivity" />
         </activity>
         <activity
             android:name=".CustomerListActivity"
-            android:parentActivityName=".OrdersActivity"
+            android:parentActivityName=".OrderListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.tuananhle.movingcompany.OrdersActivity" />
+                android:value="com.example.tuananhle.movingcompany.OrderListActivity" />
         </activity>
 
         <activity
@@ -59,11 +59,11 @@
 
         <activity
             android:name=".OrderActivity"
-            android:parentActivityName=".OrdersActivity"
+            android:parentActivityName=".OrderListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.tuananhle.movingcompany.OrdersActivity" />
+                android:value="com.example.tuananhle.movingcompany.OrderListActivity" />
         </activity>
 
     </application>

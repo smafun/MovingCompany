@@ -1,76 +1,65 @@
 package com.example.tuananhle.movingcompany;
 
-/**
- * Created by tuananhle on 19.01.2018.
- */
-
 public class Order {
-    private String CustomName;
-    private int ServiceId;
-    private int Id;
-    private String AddressFrom;
-    private String AddressTo;
-    private String ServiceTypes;
-    private String Date;
-    private String FreeText;
+    private int customerId;
+    private int id;
+    private String addressFrom;
+    private String addressTo;
+    private String serviceTypes;
+    private String date;
+    private String txtField;
 
-
-    public String getCustomName() {
-        return CustomName;
+    public int getCustomerId() {
+        return customerId;
     }
-    public void setCustomName(String customname) {
-        this.CustomName = customname;
+    public void setCustomName(int customerid) {
+        this.customerId = customerid;
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
     public void setId(int id) {
-        this.Id = id;
+        this.id = id;
     }
 
     public String getAddressFrom() {
-        return AddressFrom;
+        return addressFrom;
     }
     public void setAddressFrom(String addresseFrom) {
-        this.AddressFrom = addresseFrom;
+        this.addressFrom = addresseFrom;
     }
 
     public String getAddresseTo() {
-        return AddressTo;
+        return addressTo;
     }
     public void setAddresseTo(String addresseTo) {
-        this.AddressTo = addresseTo;
+        this.addressTo = addresseTo;
     }
 
     public String getServiceTypes() {
-        return ServiceTypes;
+        return serviceTypes;
     }
     public void setServiceTypes(String serviceTypes) {
-        this.ServiceTypes = serviceTypes;
+        this.serviceTypes = serviceTypes;
     }
 
     public String getDate() {
-        return Date;
+        return date;
     }
     public void setDate(String date) {
-        this.Date = date;
+        this.date = date;
     }
 
     public String getFreeText() {
-        return FreeText;
+        return txtField;
     }
     public void setFreeText(String freeText) {
-        this.FreeText = freeText;
+        this.txtField = freeText;
     }
 
-    public Order(int id, String customName, String addrfrom, String addrto, String email, String date, String freetxt){
-    this.Id = id;
-    this.CustomName = customName;
-    this.AddressFrom = addrfrom;
-    this.AddressTo = addrto;
-    this.ServiceTypes = email;
-    this.Date = date;
-    this.FreeText = freetxt;
+    public String toString(){
+        return this.customerId + " " + this.addressFrom + " " + this.addressTo + " " + this.serviceTypes + " " + this.date + " " + txtField;
     }
+
 }

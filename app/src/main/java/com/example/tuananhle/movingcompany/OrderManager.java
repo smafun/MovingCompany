@@ -16,10 +16,6 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
 
-/**
- * Created by tuananhle on 21.01.2018.
- */
-
 public class OrderManager {
     public static void getOrder(OrderActivity activity, int id) {
         RequestQueue requestQueue = Volley.newRequestQueue(activity);
@@ -35,7 +31,7 @@ public class OrderManager {
                         JsonElement mJson =  parser.parse(response);
                         Gson gson = new Gson();
                         Order order = gson.fromJson(mJson, Order.class);
-                        activity.onServiceTypeLoaded(order);
+                        activity.onOrderLoaded(order);
                     }
                 },
                 new Response.ErrorListener()
@@ -51,9 +47,9 @@ public class OrderManager {
         queue.add(getRequest);
     }
 
-    public static void getAll(CustomerListActivity activity) {
+    public static void getAll(OrderListActivity activity) {
         RequestQueue queue = Volley.newRequestQueue(activity);
-        StringRequest getRequest = new StringRequest(Request.Method.GET, ConstantsUrl.CUSTOMER,
+        StringRequest getRequest = new StringRequest(Request.Method.GET, ConstantsUrl.ORDER,
                 new Response.Listener<String>()
                 {
                     @Override
@@ -63,9 +59,9 @@ public class OrderManager {
                         JsonParser parser = new JsonParser();
                         JsonElement mJson =  parser.parse(response);
                         Gson gson = new Gson();
-                        Type listType = new TypeToken<List<Customer>>(){}.getType();
-                        List<Customer> customer = (List<Customer>)gson.fromJson(mJson, listType);
-                        activity.onItemsLoaded(customer);
+                        Type listType = new TypeToken<List<Order>>(){}.getType();
+                        List<Order> orders = (List<Order>)gson.fromJson(mJson, listType);
+                        activity.onItemsLoaded(orders);
                     }
                 },
                 new Response.ErrorListener()

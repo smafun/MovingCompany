@@ -1,5 +1,6 @@
 package com.example.tuananhle.movingcompany;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -15,9 +16,13 @@ import java.util.List;
 
 public class CustomerListActivity extends AppCompatActivity {
     private ArrayAdapter<Customer> adapter;
+    private boolean select;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.select = getIntent().getBooleanExtra("Select", false);
+
         try{
             setContentView(R.layout.activity_customer_list);
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -43,10 +48,19 @@ public class CustomerListActivity extends AppCompatActivity {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long itemId) {
-                    Intent intent = new Intent(view.getContext(), CustomerActivity.class);
+                    Class<? extends Activity> activityClass;
+
+                    if (select){
+                        activityClass = OrderActivity.class;
+                    }
+                    else {
+                        activityClass = CustomerActivity.class;
+                    }
+                    Intent intent = new Intent(view.getContext(), activityClass);
                     Customer customer = myStringArray.get(position);
                     int id = customer.getId();
-                    intent.putExtra("Id", id);
+                    intent.putExtra("customerId", id);
+                    intent.putExtra("customerName", customer.toString());
                     startActivity(intent);
                 }
             });

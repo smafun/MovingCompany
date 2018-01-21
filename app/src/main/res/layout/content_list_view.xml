@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.tuananhle.movingcompany.ServiceTypesActivity"
-    tools:showIn="@layout/activity_service_types">
+    tools:context="com.example.tuananhle.movingcompany.ServiceTypeListActivity"
+    tools:showIn="@layout/activity_service_type_list">
 
     <ListView
         android:id="@+id/listview"

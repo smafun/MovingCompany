@@ -19,14 +19,14 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrdersActivity extends AppCompatActivity
+public class OrderListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private ArrayAdapter<Order> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try{
-            setContentView(R.layout.activity_orders);
+            setContentView(R.layout.activity_order_list);
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
 
@@ -34,7 +34,9 @@ public class OrdersActivity extends AppCompatActivity
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(view.getContext(), OrderActivity.class);
+                    Intent intent = new Intent(view.getContext(), CustomerListActivity.class);
+                    //int id = myStringArray.get(position).getId();
+                    intent.putExtra("Select", true);
                     startActivity(intent);
                 }
             });
@@ -73,7 +75,7 @@ public class OrdersActivity extends AppCompatActivity
 
     public void onResume() {
         super.onResume();
-        //OrderManager.getAll(this);
+        OrderManager.getAll(this);
     }
 
     public void onItemsLoaded(List<Order> orders) {
@@ -125,7 +127,7 @@ public class OrdersActivity extends AppCompatActivity
             Intent intent = new Intent(this, CustomerListActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_servicetypes) {
-            Intent intent = new Intent(this, ServiceTypesActivity.class);
+            Intent intent = new Intent(this, ServiceTypeListActivity.class);
             startActivity(intent);
         }
 

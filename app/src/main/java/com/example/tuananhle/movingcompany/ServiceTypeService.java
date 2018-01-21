@@ -59,7 +59,7 @@ class ServiceTypeService extends AppCompatActivity{
         queue.add(getRequest);
     }
 
-    public static void getAll(ServiceTypesActivity activity) {
+    public static void getAll(ServiceTypeCallback activity) {
         RequestQueue queue = Volley.newRequestQueue(activity);
         StringRequest getRequest = new StringRequest(Request.Method.GET, ConstantsUrl.SERVICETYPES,
                 new Response.Listener<String>()

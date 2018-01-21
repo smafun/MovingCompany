@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -22,19 +23,24 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-/**
- * Created by tuananhle on 18.01.2018.
- */
-
-public class OrderActivity extends AppCompatActivity {
+public class OrderActivity extends ServiceTypeCallback {
     private int id;
+    private int customerId;
+    private String customerName;
+    private ArrayAdapter<ServiceType> adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.id = getIntent().getIntExtra("Id", -1);
+        this.customerId = getIntent().getIntExtra("customerId", -1);
+        this.customerName = getIntent().getStringExtra("customerName");
+
         try{
             setContentView(R.layout.activity_order);
             if (id > 0) {
@@ -46,21 +52,46 @@ public class OrderActivity extends AppCompatActivity {
                 ((EditText) findViewById(R.id.freetxt)).setEnabled(false);
                 OrderManager.getOrder(this, id);
             }
+            else if(customerId > 0) {
+                ((EditText) findViewById(R.id.name)).setEnabled(false);
+                ((EditText) findViewById(R.id.name)).setText(customerName);
+            }
 
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
 
             // Test dropdwon
-    /*        //get the spinner from the xml.
-            Spinner dropdown = findViewById(R.id.spinner1);
+            //get the spinner from the xml.
             //create a list of items for the spinner.
-            String[] items = new String[]{"1", "2", "three"};
+            List<ServiceType> serviceTypes = new ArrayList<>();
+            Spinner dropdown = findViewById(R.id.spinner1);
+
+
+            dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                    String tmpTxt = serviceTypes.get(position).getName();
+                    String txt = ((EditText) findViewById(R.id.servicetypes)).getText().toString();
+                    if (!txt.isEmpty())
+                        txt += ", " + tmpTxt;
+                    txt += tmpTxt;
+                    ((EditText) findViewById(R.id.servicetypes)).setText(txt);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parentView) {
+                    // your code here
+                }
+
+            });
+            //create a list of items for the spinner.
             //create an adapter to describe how the items are displayed, adapters are used in several places in android.
             //There are multiple variations of this, but this is the basic variant.
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+            adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, serviceTypes);
             //set the spinners adapter to the previously created one.
             dropdown.setAdapter(adapter);
-    */
+
+            ServiceTypeService.getAll(this);
             // End test
 
             FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.save);
@@ -77,13 +108,19 @@ public class OrderActivity extends AppCompatActivity {
                 }
             });
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }catch (Exception e){
+        } catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    public void onServiceTypeLoaded(Order order) {
-        ((EditText) findViewById(R.id.name)).setText(order.getCustomName());
+    @Override
+    public void onItemsLoaded(List<ServiceType> serviceTypes) {
+        adapter.clear();
+        adapter.addAll(serviceTypes);
+    }
+
+    public void onOrderLoaded(Order order) {
+        ((EditText) findViewById(R.id.name)).setText(order.getCustomerId());
         ((EditText) findViewById(R.id.name)).setEnabled(true);
 
         ((EditText) findViewById(R.id.addfrom)).setText(order.getAddressFrom());
@@ -102,26 +139,28 @@ public class OrderActivity extends AppCompatActivity {
         ((EditText) findViewById(R.id.freetxt)).setEnabled(true);
     }
 
+
+
     private class HttpCreateTask extends AsyncTask<Void, Void, Order> {
         @Override
         protected Order doInBackground(Void... params) {
-            String name = ((EditText) findViewById(R.id.name)).getText().toString();
+
             String addfrom = ((EditText) findViewById(R.id.addfrom)).getText().toString();
             String addto = ((EditText) findViewById(R.id.addto)).getText().toString();
             String servicetypes = ((EditText) findViewById(R.id.servicetypes)).getText().toString();
             String date = ((EditText) findViewById(R.id.date)).getText().toString();
             String freetxt = ((EditText) findViewById(R.id.freetxt)).getText().toString();
-            Order order = new Order(1, name, addfrom, addto,servicetypes,date, freetxt);
+
             RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
 
             Map<String, String> jsonParams = new HashMap<>();
 
-            jsonParams.put("customName", order.getCustomName());
-            jsonParams.put("addrFrom", order.getAddressFrom());
-            jsonParams.put("addrTo", order.getAddresseTo());
-            jsonParams.put("serviceTypes", order.getServiceTypes());
-            jsonParams.put("date", order.getDate());
-            jsonParams.put("freeText", order.getFreeText());
+            jsonParams.put("CustomerId", String.valueOf(OrderActivity.this.customerId));
+            jsonParams.put("AddressFrom", addfrom);
+            jsonParams.put("AddressTo", addto);
+            jsonParams.put("ServiceTypes", servicetypes);
+            jsonParams.put("Date", date);
+            jsonParams.put("TxtField", freetxt);
             JsonObjectRequest postRequest = new JsonObjectRequest( Request.Method.POST, ConstantsUrl.ORDER,
                     new JSONObject(jsonParams),
                     new Response.Listener<JSONObject>() {
@@ -158,17 +197,16 @@ public class OrderActivity extends AppCompatActivity {
             String servicetypes = ((EditText) findViewById(R.id.servicetypes)).getText().toString();
             String date = ((EditText) findViewById(R.id.date)).getText().toString();
             String freetxt = ((EditText) findViewById(R.id.freetxt)).getText().toString();
-            Order order = new Order(1, name, addfrom, addto,servicetypes,date, freetxt);
 
             RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
 
             Map<String, String> jsonParams = new HashMap<>();
 
-            jsonParams.put("addrFrom", order.getAddressFrom());
-            jsonParams.put("addrTo", order.getAddresseTo());
-            jsonParams.put("serviceTypes", order.getServiceTypes());
-            jsonParams.put("date", order.getDate());
-            jsonParams.put("freeText", order.getFreeText());
+            jsonParams.put("AddressFrom", addfrom);
+            jsonParams.put("AddressTo", addto);
+            jsonParams.put("ServiceTypes", servicetypes);
+            jsonParams.put("Date", date);
+            jsonParams.put("TxtField", freetxt);
             JsonObjectRequest postRequest = new JsonObjectRequest( Request.Method.PUT, ConstantsUrl.ORDER + "/" +id,
                     new JSONObject(jsonParams),
                     new Response.Listener<JSONObject>() {

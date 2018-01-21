@@ -29,7 +29,8 @@
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Name" />
+            android:hint="Name"
+            />
 
         <EditText
             android:id="@+id/addfrom"
@@ -42,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Address to" />
-    <!--    <LinearLayout
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -52,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:drawable/btn_dropdown"
-                android:spinnerMode="dropdown"/> -->
+                android:spinnerMode="dropdown"/>
 
             <EditText
                 android:id="@+id/servicetypes"
@@ -61,7 +62,7 @@
                 android:enabled="false"
                 android:hint="Setvice types" />
 
-    <!--    </LinearLayout> -->
+        </LinearLayout>
 
 
         <EditText

@@ -27,7 +27,7 @@ public class CustomerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.id = getIntent().getIntExtra("Id", -1);
+        this.id = getIntent().getIntExtra("customerId", -1);
         try{
             setContentView(R.layout.activity_custom);
             if (id > 0) {
