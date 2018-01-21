@@ -38,7 +38,27 @@
                 android:value="com.example.tuananhle.movingcompany.ServiceTypesActivity" />
         </activity>
         <activity
+            android:name=".CustomerListActivity"
+            android:parentActivityName=".OrdersActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.tuananhle.movingcompany.OrdersActivity" />
+        </activity>
+
+        <activity
             android:name=".CustomerActivity"
+            android:parentActivityName=".CustomerListActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleInstance">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.tuananhle.movingcompany.CustomerListActivity" />
+        </activity>
+
+
+        <activity
+            android:name=".OrderActivity"
             android:parentActivityName=".OrdersActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -46,33 +66,6 @@
                 android:value="com.example.tuananhle.movingcompany.OrdersActivity" />
         </activity>
 
-        <activity
-            android:name=".CustomActivity"
-            android:parentActivityName=".CustomerActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.tuananhle.movingcompany.CustomerActivity" />
-        </activity>
-
-
-        <activity
-            android:name=".NewOrderActivity"
-            android:parentActivityName=".OrdersActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.tuananhle.movingcompany.OrdersActivity" />
-        </activity>
-
-        <activity
-            android:name=".EditCustomerActivity"
-            android:parentActivityName=".CustomerActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.tuananhle.movingcompany.CustomerActivity" />
-        </activity>
     </application>
 
 </manifest>

@@ -5,9 +5,9 @@ package com.example.tuananhle.movingcompany;
  */
 
 public class Order {
-    private int CustomerId;
+    private String CustomName;
     private int ServiceId;
-    private int OrderId;
+    private int Id;
     private String AddressFrom;
     private String AddressTo;
     private String ServiceTypes;
@@ -15,18 +15,18 @@ public class Order {
     private String FreeText;
 
 
-    public int getCustomerId() {
-        return CustomerId;
+    public String getCustomName() {
+        return CustomName;
     }
-    public void setCustomerId(int customerId) {
-        this.CustomerId = customerId;
+    public void setCustomName(String customname) {
+        this.CustomName = customname;
     }
 
-    public int getOrderId() {
-        return OrderId;
+    public int getId() {
+        return Id;
     }
-    public void setOrderId(int orderId) {
-        this.OrderId = orderId;
+    public void setId(int id) {
+        this.Id = id;
     }
 
     public String getAddressFrom() {
@@ -64,14 +64,13 @@ public class Order {
         this.FreeText = freeText;
     }
 
-
-    public Order(int customerid, int orderid, String addrfrom, String addrto, String email, String date, String freetxt){
-        this.CustomerId = customerid;
-        this.OrderId = orderid;
-        this.AddressFrom = addrfrom;
-        this.AddressTo = addrto;
-        this.ServiceTypes = email;
-        this.Date = date;
-        this.FreeText = freetxt;
+    public Order(int id, String customName, String addrfrom, String addrto, String email, String date, String freetxt){
+    this.Id = id;
+    this.CustomName = customName;
+    this.AddressFrom = addrfrom;
+    this.AddressTo = addrto;
+    this.ServiceTypes = email;
+    this.Date = date;
+    this.FreeText = freetxt;
     }
 }

@@ -27,7 +27,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class ServiceTypeService {
+class ServiceTypeService extends AppCompatActivity{
+    private int id;
     public static void getServiceType(ServiceTypeActivity activity, int id) {
         RequestQueue requestQueue = Volley.newRequestQueue(activity);
         RequestQueue queue = Volley.newRequestQueue(activity);
@@ -86,5 +87,82 @@ class ServiceTypeService {
         ) ;
         queue.add(getRequest);
     }
+
+    public class HttpCreateTask extends AsyncTask<Void, Void, ServiceType> {
+        @Override
+        protected ServiceType doInBackground(Void... params) {
+            String text = ((EditText) findViewById(R.id.name)).getText().toString();
+            ServiceType serviceType = new ServiceType(1, text);
+            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+            Map<String, String> jsonParams = new HashMap<>();
+
+            jsonParams.put("name", serviceType.getName());
+            JsonObjectRequest postRequest = new JsonObjectRequest( Request.Method.POST, ConstantsUrl.SERVICETYPES,
+                    new JSONObject(jsonParams),
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            finish();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            //   Handle Error
+                            Log.e("Error", "Error");
+                        }
+                    }) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    HashMap<String, String> headers = new HashMap<String, String>();
+                    headers.put("Content-Type", "application/json; charset=utf-8");
+                    headers.put("User-agent", System.getProperty("http.agent"));
+                    return headers;
+                }
+            };
+            requestQueue.add(postRequest);
+            return null;
+        }
+    }
+
+    public class HttpUpdateTask extends AsyncTask<Void, Void, ServiceType> {
+        @Override
+        protected ServiceType doInBackground(Void... params) {
+            String text = ((EditText) findViewById(R.id.name)).getText().toString();
+            ServiceType serviceType = new ServiceType(id, text);
+            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+            Map<String, String> jsonParams = new HashMap<>();
+
+            jsonParams.put("name", serviceType.getName());
+            JsonObjectRequest postRequest = new JsonObjectRequest( Request.Method.PUT, ConstantsUrl.SERVICETYPES + "/" +id,
+                    new JSONObject(jsonParams),
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            finish();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            //   Handle Error
+                            Log.e("Error", "Error");
+                        }
+                    }) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    HashMap<String, String> headers = new HashMap<String, String>();
+                    headers.put("Content-Type", "application/json; charset=utf-8");
+                    headers.put("User-agent", System.getProperty("http.agent"));
+                    return headers;
+                }
+            };
+            requestQueue.add(postRequest);
+            return null;
+        }
+    }
+
 
 }

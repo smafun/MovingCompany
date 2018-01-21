@@ -16,8 +16,12 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class CustomManager {
-    public static void getCustom(CustomerActivity activity, int id) {
+/**
+ * Created by tuananhle on 21.01.2018.
+ */
+
+public class OrderManager {
+    public static void getOrder(OrderActivity activity, int id) {
         RequestQueue requestQueue = Volley.newRequestQueue(activity);
         RequestQueue queue = Volley.newRequestQueue(activity);
         StringRequest getRequest = new StringRequest(Request.Method.GET, ConstantsUrl.CUSTOMER + "/"+ id,
@@ -30,8 +34,8 @@ public class CustomManager {
                         JsonParser parser = new JsonParser();
                         JsonElement mJson =  parser.parse(response);
                         Gson gson = new Gson();
-                        Customer customer = gson.fromJson(mJson, Customer.class);
-                        activity.onServiceTypeLoaded(customer);
+                        Order order = gson.fromJson(mJson, Order.class);
+                        activity.onServiceTypeLoaded(order);
                     }
                 },
                 new Response.ErrorListener()
@@ -60,8 +64,8 @@ public class CustomManager {
                         JsonElement mJson =  parser.parse(response);
                         Gson gson = new Gson();
                         Type listType = new TypeToken<List<Customer>>(){}.getType();
-                        List<Customer> customers = (List<Customer>)gson.fromJson(mJson, listType);
-                        activity.onItemsLoaded(customers);
+                        List<Customer> customer = (List<Customer>)gson.fromJson(mJson, listType);
+                        activity.onItemsLoaded(customer);
                     }
                 },
                 new Response.ErrorListener()
@@ -75,5 +79,4 @@ public class CustomManager {
         ) ;
         queue.add(getRequest);
     }
-
 }

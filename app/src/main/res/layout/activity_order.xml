@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/constraintLayout">
 
     <android.support.design.widget.AppBarLayout
@@ -33,36 +32,69 @@
             android:hint="Name" />
 
         <EditText
-            android:id="@+id/phone"
+            android:id="@+id/addfrom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Phone number" />
+            android:hint="Address from" />
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/addto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email" />
+            android:hint="Address to" />
+    <!--    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spinner1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown"/> -->
+
+            <EditText
+                android:id="@+id/servicetypes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:hint="Setvice types" />
+
+    <!--    </LinearLayout> -->
+
+
+        <EditText
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date" />
+
+        <EditText
+            android:id="@+id/freetxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Free text" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin">
+        android:layout_margin="16dp">
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
             app:srcCompat="@android:drawable/ic_input_add"/>
 
-    <!--    <android.support.design.widget.FloatingActionButton
-            android:id="@+id/update"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@android:drawable/ic_media_play"/> -->
+        <!--    <android.support.design.widget.FloatingActionButton
+                android:id="@+id/update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@android:drawable/ic_media_play"/> -->
     </LinearLayout>
-
 </android.support.design.widget.CoordinatorLayout>

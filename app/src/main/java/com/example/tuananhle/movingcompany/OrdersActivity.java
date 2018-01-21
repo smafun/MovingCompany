@@ -3,8 +3,6 @@ package com.example.tuananhle.movingcompany;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,14 +12,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OrdersActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    private ArrayAdapter<Order> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         try{
             setContentView(R.layout.activity_orders);
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -31,12 +34,29 @@ public class OrdersActivity extends AppCompatActivity
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(view.getContext(), NewOrderActivity.class);
+                    Intent intent = new Intent(view.getContext(), OrderActivity.class);
                     startActivity(intent);
                 }
             });
 
             // Get all order from http://localhost/api/order
+            List<Order> myStringArray = new ArrayList<>();
+            adapter = new ArrayAdapter<Order>(this,
+                    android.R.layout.simple_list_item_1, myStringArray);
+            ListView listView = (ListView) findViewById(R.id.listview);
+            listView.setAdapter(adapter);
+            // Click on item
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long itemId) {
+                    Intent intent = new Intent(view.getContext(), OrderActivity.class);
+                    int id = myStringArray.get(position).getId();
+                    intent.putExtra("Id", id);
+                    startActivity(intent);
+                }
+            });
+
+            // Drawer handle
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -46,10 +66,19 @@ public class OrdersActivity extends AppCompatActivity
 
             NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
             navigationView.setNavigationItemSelectedListener(this);
-
-        }catch (Exception e){
+       } catch (Exception e){
             e.printStackTrace();
-        }
+       }
+    }
+
+    public void onResume() {
+        super.onResume();
+        //OrderManager.getAll(this);
+    }
+
+    public void onItemsLoaded(List<Order> orders) {
+        adapter.clear();
+        adapter.addAll(orders);
     }
 
     @Override
@@ -93,7 +122,7 @@ public class OrdersActivity extends AppCompatActivity
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_customer) {
-            Intent intent = new Intent(this, CustomerActivity.class);
+            Intent intent = new Intent(this, CustomerListActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_servicetypes) {
             Intent intent = new Intent(this, ServiceTypesActivity.class);

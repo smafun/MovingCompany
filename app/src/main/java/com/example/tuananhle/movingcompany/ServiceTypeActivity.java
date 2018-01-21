@@ -44,10 +44,11 @@ public class ServiceTypeActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     // Save new ServiceTypes
                     if(id == -1){
-                        new HttpCreateTask().execute();
+                        //new ServiceTypeService.HttpCreateTask().execute();
+                        new ServiceTypeActivity.HttpCreateTask().execute();
                     }
                     else {
-                        new HttpUpdateTask().execute();
+                        new ServiceTypeActivity.HttpUpdateTask().execute();
                     }
                 }
             });
