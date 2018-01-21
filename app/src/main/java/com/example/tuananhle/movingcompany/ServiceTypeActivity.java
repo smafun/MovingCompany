@@ -42,9 +42,7 @@ public class ServiceTypeActivity extends AppCompatActivity {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // Save new ServiceTypes
                     if(id == -1){
-                        //new ServiceTypeService.HttpCreateTask().execute();
                         new ServiceTypeActivity.HttpCreateTask().execute();
                     }
                     else {

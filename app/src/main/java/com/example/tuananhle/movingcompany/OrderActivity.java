@@ -60,12 +60,10 @@ public class OrderActivity extends ServiceTypeCallback {
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
 
-            // Test dropdwon
             //get the spinner from the xml.
             //create a list of items for the spinner.
             List<ServiceType> serviceTypes = new ArrayList<>();
             Spinner dropdown = findViewById(R.id.spinner1);
-
 
             dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -74,7 +72,8 @@ public class OrderActivity extends ServiceTypeCallback {
                     String txt = ((EditText) findViewById(R.id.servicetypes)).getText().toString();
                     if (!txt.isEmpty())
                         txt += ", " + tmpTxt;
-                    txt += tmpTxt;
+                    else
+                        txt += tmpTxt;
                     ((EditText) findViewById(R.id.servicetypes)).setText(txt);
                 }
 
@@ -120,7 +119,8 @@ public class OrderActivity extends ServiceTypeCallback {
     }
 
     public void onOrderLoaded(Order order) {
-        ((EditText) findViewById(R.id.name)).setText(order.getCustomerId());
+
+        ((EditText) findViewById(R.id.name)).setText(String.valueOf(order.getCustomerId()));
         ((EditText) findViewById(R.id.name)).setEnabled(true);
 
         ((EditText) findViewById(R.id.addfrom)).setText(order.getAddressFrom());
@@ -137,6 +137,8 @@ public class OrderActivity extends ServiceTypeCallback {
 
         ((EditText) findViewById(R.id.freetxt)).setText(order.getFreeText());
         ((EditText) findViewById(R.id.freetxt)).setEnabled(true);
+
+
     }
 
 

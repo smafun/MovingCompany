@@ -35,13 +35,12 @@ public class OrderListActivity extends AppCompatActivity
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(view.getContext(), CustomerListActivity.class);
-                    //int id = myStringArray.get(position).getId();
                     intent.putExtra("Select", true);
                     startActivity(intent);
                 }
             });
 
-            // Get all order from http://localhost/api/order
+
             List<Order> myStringArray = new ArrayList<>();
             adapter = new ArrayAdapter<Order>(this,
                     android.R.layout.simple_list_item_1, myStringArray);

@@ -20,7 +20,7 @@ public class OrderManager {
     public static void getOrder(OrderActivity activity, int id) {
         RequestQueue requestQueue = Volley.newRequestQueue(activity);
         RequestQueue queue = Volley.newRequestQueue(activity);
-        StringRequest getRequest = new StringRequest(Request.Method.GET, ConstantsUrl.CUSTOMER + "/"+ id,
+        StringRequest getRequest = new StringRequest(Request.Method.GET, ConstantsUrl.ORDER + "/"+ id,
                 new Response.Listener<String>()
                 {
                     @Override

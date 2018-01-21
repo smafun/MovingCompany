@@ -62,6 +62,9 @@ public class CustomerListActivity extends AppCompatActivity {
                     intent.putExtra("customerId", id);
                     intent.putExtra("customerName", customer.toString());
                     startActivity(intent);
+                    if (select){
+                        finish();
+                    }
                 }
             });
 
