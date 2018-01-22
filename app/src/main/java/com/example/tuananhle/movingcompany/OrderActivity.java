@@ -119,9 +119,8 @@ public class OrderActivity extends ServiceTypeCallback {
     }
 
     public void onOrderLoaded(Order order) {
-
         ((EditText) findViewById(R.id.name)).setText(String.valueOf(order.getCustomerId()));
-        ((EditText) findViewById(R.id.name)).setEnabled(true);
+        ((EditText) findViewById(R.id.name)).setEnabled(false);
 
         ((EditText) findViewById(R.id.addfrom)).setText(order.getAddressFrom());
         ((EditText) findViewById(R.id.addfrom)).setEnabled(true);
@@ -193,7 +192,7 @@ public class OrderActivity extends ServiceTypeCallback {
     private class HttpUpdateTask extends AsyncTask<Void, Void, Order> {
         @Override
         protected Order doInBackground(Void... params) {
-            String name = ((EditText) findViewById(R.id.name)).getText().toString();
+            //String name = ((EditText) findViewById(R.id.name)).getText().toString();
             String addfrom = ((EditText) findViewById(R.id.addfrom)).getText().toString();
             String addto = ((EditText) findViewById(R.id.addto)).getText().toString();
             String servicetypes = ((EditText) findViewById(R.id.servicetypes)).getText().toString();
